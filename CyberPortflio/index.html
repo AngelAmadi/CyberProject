@@ -1,0 +1,90 @@
+<!--
+  Angel Amadi - Cybersecurity Portfolio
+  Multi-page HTML + CSS structure for GitHub Pages
+  UK English spelling used
+-->
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Angel Amadi | Cybersecurity Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Google Fonts for Cyber look -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <!-- Icons -->
+  <script src="https://kit.fontawesome.com/a2e0e6ad4f.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-text glitch" data-text="Angel Amadi">Angel Amadi </div>
+    <div  data-text="Angel Amadi"> Cybersecurity Portfolio</div>
+    <p class="intro-type">Blue Team • Red Team • Cloud Security </p>
+  </header>
+
+  <section class="projects grid">
+    <div class="card">
+      <h2><i class="fas fa-server"></i> Securing AWS EC2 Instance</h2>
+      <p>Hardened a Free Tier EC2 instance with IAM roles, security groups, and CloudTrail logging. Reduced attack surface by 90%.</p>
+      <a class="btn" href="ec2.html">🔐 View Project</a>
+    </div>
+
+    <div class="card">
+      <h2><i class="fas fa-bug"></i> Vulnerability Management</h2>
+      <p>Used Nessus Essentials to scan, remediate, and report vulnerabilities in Windows host. Produced full risk report.</p>
+      <a class="btn" href="nessus.html">📂 View Project</a>
+    </div>
+
+    <div class="card">
+      <h2><i class="fas fa-cloud"></i> Securing S3 Bucket</h2>
+      <p>Implemented encryption, access controls, and versioning to protect cloud data from breaches and accidental loss.</p>
+      <a class="btn" href="s3.html">☁️ View Project</a>
+    </div>
+  </section>
+
+  <canvas id="matrixCanvas"></canvas>
+<script>
+  const canvas = document.getElementById("matrixCanvas");
+  const ctx = canvas.getContext("2d");
+
+  // Fullscreen canvas
+  canvas.height = window.innerHeight;
+  canvas.width = window.innerWidth;
+
+  const letters = "アァイィウヴエェオカガキギクグケゲコゴサザシジスズセゼソゾタダチッヂツヅテデトドナニヌネノハバパヒビピフブプヘベペホボポマミムメモヤユヨラリルレロワヰヱヲンabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  const fontSize = 14;
+  const columns = canvas.width / fontSize;
+  const drops = Array.from({ length: columns }).map(() => 1);
+
+  function draw() {
+    ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = "#00ff00";
+    ctx.font = fontSize + "px monospace";
+
+    for (let i = 0; i < drops.length; i++) {
+      const text = letters[Math.floor(Math.random() * letters.length)];
+      ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+        drops[i] = 0;
+      }
+      drops[i]++;
+    }
+  }
+
+  setInterval(draw, 40);
+
+  // Handle window resize
+  window.addEventListener("resize", () => {
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+  });
+</script>
+
+  <footer>
+    <p>&copy; 2025 Angel Amadi | Cybersecurity Portfolio</p>
+  </footer>
+</body>
+</html>

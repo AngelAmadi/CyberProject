@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AWS EC2 Hardening | Angel Amadi</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a href="index.html" class="back">⬅ Back to Portfolio</a>
+
+  <section class="project-content">
+    <h1>AWS EC2 Instance Hardening</h1>
+    <p><strong>Objective:</strong> Deploy and secure an AWS Free Tier EC2 instance using blue-team practices.</p>
+  <h2>Executive Summary</h2>
+  <p>This project demonstrated the deployment and hardening of an AWS EC2 instance using Free Tier resources. The focus was on applying essential cloud security practices that directly map to production environments, including restricted network access, the principle of least privilege, and audit logging.</p>
+
+  <h2>Scope & Objectives</h2>
+  <ul>
+    <li>Deploy an EC2 instance within AWS Free Tier.</li>
+    <li>Apply AWS security best practices to reduce risks of unauthorised access, credential exposure, and lack of monitoring.</li>
+    <li>Validate security measures through configuration checks and functional tests.</li>
+  </ul>
+
+  <h2>Key Risks Identified</h2>
+  <ul>
+    <li>Overly permissive inbound rules.</li>
+    <li>Credential exposure without IAM roles.</li>
+    <li>Lack of logging and monitoring.</li>
+  </ul>
+
+  <h2>Mitigation Measures Implemented</h2>
+  <ul>
+    <li>Restricted inbound access to SSH and optional HTTP/HTTPS.</li>
+    <li>Attached least privilege IAM role (CloudWatchAgentServerPolicy).</li>
+    <li>Enabled CloudTrail logging with logs stored in a secured S3 bucket.</li>
+  </ul>
+
+  <h2>Validation & Findings</h2>
+  <p>Security group blocked all unauthorised ports, logging worked without embedded credentials, and CloudTrail provided a full audit trail.</p>
+
+  <h2>Tools Used</h2>
+  <p>AWS Management Console, Amazon EC2, IAM, CloudTrail, S3</p>
+
+  <h2>Skills Demonstrated</h2>
+  <p>Cloud security fundamentals, security group design, IAM role configuration, audit logging, risk assessment and remediation.</p>
+
+  <h2>Conclusion</h2>
+  <p>The EC2 instance was hardened against common threats, showing the application of AWS best practices in a real-world scenario.</p>
+
+   
+  <h2>Report</h2>
+  <a class="btn" href="https://github.com/AngelAmadi/CyberProjects/blob/main/Securing%20an%20AWS%20EC2%20Instance%20report.pdf" target="_blank" rel="noopener noreferrer">📂 View Full Report</a>
+
+  </section>
+
+  <canvas id="matrixCanvas"></canvas>
+<script>
+  const canvas = document.getElementById("matrixCanvas");
+  const ctx = canvas.getContext("2d");
+
+  // Fullscreen canvas
+  canvas.height = window.innerHeight;
+  canvas.width = window.innerWidth;
+
+  const letters = "アァイィウヴエェオカガキギクグケゲコゴサザシジスズセゼソゾタダチッヂツヅテデトドナニヌネノハバパヒビピフブプヘベペホボポマミムメモヤユヨラリルレロワヰヱヲンabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  const fontSize = 14;
+  const columns = canvas.width / fontSize;
+  const drops = Array.from({ length: columns }).map(() => 1);
+
+  function draw() {
+    ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = "#00ff00";
+    ctx.font = fontSize + "px monospace";
+
+    for (let i = 0; i < drops.length; i++) {
+      const text = letters[Math.floor(Math.random() * letters.length)];
+      ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+        drops[i] = 0;
+      }
+      drops[i]++;
+    }
+  }
+
+  setInterval(draw, 40);
+
+  // Handle window resize
+  window.addEventListener("resize", () => {
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+  });
+</script>
+
+</body>
+</html>
