@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Securing AWS S3 Bucket | Angel Amadi</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+ <a href="index.html" class="back">⬅ Back to Portfolio</a>
+
+  <section class="project-content">
+    <h1>Securing Amazon S3 Bucket</h1>
+    <p><strong>Objective:</strong> something.</p>
+
+     <h2>Technical Summary</h2>
+      <p>
+        This project demonstrated the application of core cloud security practices by securing an Amazon S3 bucket against unauthorised access, data breaches, and accidental data loss. Key controls included enabling Block Public Access, enforcing default encryption, and turning on versioning. The outcome was a secure and resilient storage configuration that aligns with AWS best practices and real-world security requirements.
+      </p>
+   
+
+    
+      <h2>Scope & Objectives</h2>
+      <ul>
+        <li>Secure an S3 bucket using AWS-native controls</li>
+        <li>Prevent public exposure of sensitive data</li>
+        <li>Protect against accidental deletion or modification of stored objects</li>
+        <li>Demonstrate data confidentiality through encryption</li>
+      </ul>
+
+
+ 
+      <h2>Key Risks Identified</h2>
+      <ul>
+        <li><strong>Public Exposure of Data:</strong> Misconfigured buckets could allow unauthorised internet access</li>
+        <li><strong>Data Loss or Corruption:</strong> Accidental deletion or overwrites without recovery options</li>
+        <li><strong>Unencrypted Data at Rest:</strong> Lack of encryption increases compromise risk</li>
+      </ul>
+  
+
+
+      <h2>Mitigation Measures</h2>
+      <ul>
+        <li><strong>Block Public Access:</strong> Enabled across the bucket to eliminate risk of unauthorised public access</li>
+        <li><strong>Versioning:</strong> Activated to provide recovery options for deleted or modified objects</li>
+        <li><strong>Default Encryption (SSE-S3):</strong> Applied to ensure all objects stored are encrypted automatically</li>
+      </ul>
+  
+
+  
+      <h2>Validation & Findings</h2>
+      <ul>
+        <li>Direct public access attempt confirmed blocked</li>
+        <li>Deleted object successfully restored via versioning</li>
+        <li>Objects verified as encrypted with SSE-S3</li>
+      </ul>
+   
+
+    
+      <h2>Recommendations</h2>
+      <ul>
+        <li>Perform regular configuration reviews</li>
+        <li>Apply least privilege access using IAM roles and policies</li>
+        <li>Enable CloudTrail logging to monitor access attempts</li>
+        <li>Consider automation with CloudFormation or Terraform</li>
+        <li>Enable MFA for privileged actions such as bucket deletion</li>
+      </ul>
+
+
+    
+      <h2>Skills Demonstrated</h2>
+      <p>AWS S3 security configuration, access control, encryption, resilience design, threat identification, and professional reporting</p>
+  
+
+   
+      <h2>Tools Used</h2>
+      <ul>
+        <li>AWS Management Console – for S3 bucket creation and configuration</li>
+        <li>Amazon S3 (Simple Storage Service) – object storage service</li>
+      </ul>
+    
+
+   
+      <h2>Conclusion</h2>
+      <p>
+        By enabling public access blocking, versioning, and encryption, the risks of data exposure and loss were significantly reduced. The project highlights the importance of implementing security controls at the storage layer and demonstrates the ability to configure and validate AWS services securely.
+      </p>
+   
+
+      <h2>Report</h2>
+  <a class="btn" href="https://github.com/AngelAmadi/CyberProjects/blob/main/securing%20s3%20bucket%20report.pdf" target="_blank" rel="noopener noreferrer">📂 View Full Report</a>
+
+  </section>
+  
+  <canvas id="matrixCanvas"></canvas>
+<script>
+  const canvas = document.getElementById("matrixCanvas");
+  const ctx = canvas.getContext("2d");
+
+  // Fullscreen canvas
+  canvas.height = window.innerHeight;
+  canvas.width = window.innerWidth;
+
+  const letters = "アァイィウヴエェオカガキギクグケゲコゴサザシジスズセゼソゾタダチッヂツヅテデトドナニヌネノハバパヒビピフブプヘベペホボポマミムメモヤユヨラリルレロワヰヱヲンabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  const fontSize = 14;
+  const columns = canvas.width / fontSize;
+  const drops = Array.from({ length: columns }).map(() => 1);
+
+  function draw() {
+    ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = "#00ff00";
+    ctx.font = fontSize + "px monospace";
+
+    for (let i = 0; i < drops.length; i++) {
+      const text = letters[Math.floor(Math.random() * letters.length)];
+      ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+        drops[i] = 0;
+      }
+      drops[i]++;
+    }
+  }
+
+  setInterval(draw, 40);
+
+  // Handle window resize
+  window.addEventListener("resize", () => {
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+  });
+</script>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Angel Amadi | Cybersecurity Portfolio</p>
+  </footer>
+
+</body>
+</html>
+

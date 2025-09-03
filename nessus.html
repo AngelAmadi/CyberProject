@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nessus Vulnerability Project | Angel Amadi</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a href="index.html" class="back">⬅ Back to Portfolio</a>
+
+  <section class="project-content">
+    <h1>Vulnerability Management with Nessus Essentials</h1>
+    <p><strong>Objective:</strong> Identify, remediate, and validate vulnerabilities using Nessus Essentials.</p>
+
+     <h2>Technical Summary</h2>
+  <ul>
+    <li>Setup: Installed and configured Nessus Essentials.</li>
+    <li>Scanning: Performed host discovery and a Basic Network Scan.</li>
+    <li>Findings: Identified 24 items, including SMB Signing Not Required and SSL Certificate Cannot Be Trusted.</li>
+    <li>Validation: Rescans confirmed SMB signing vulnerability resolved.</li>
+  </ul>
+
+  <h2>Key Outcomes</h2>
+  <ul>
+    <li>Applied and validated security configurations.</li>
+    <li>Demonstrated structured vulnerability assessment workflow.</li>
+    <li>Recognised lab vs real-world implications.</li>\n  </ul>
+
+  <h2>Recommendations</h2>
+  <ul>
+    <li>Conduct regular vulnerability assessments.</li>
+    <li>Apply and validate remediation measures.</li>
+    <li>Maintain documentation of findings and actions.</li>
+  </ul>
+
+  <h2>Skills Demonstrated</h2>
+  <p>Vulnerability assessment, threat analysis, system hardening, SSL/TLS awareness, remediation validation, professional reporting.</p>
+
+  <h2>Tools Used</h2>
+  <p>Nessus Essentials, Windows host, Basic Network Scan policy</p>
+
+    <h2>Report</h2>
+  <a class="btn" href="https://github.com/AngelAmadi/CyberProjects/blob/main/Vulnerability%20Management%20report.pdf" target="_blank" rel="noopener noreferrer">📂 View Full Report</a>
+
+  </section>
+
+  <canvas id="matrixCanvas"></canvas>
+<script>
+  const canvas = document.getElementById("matrixCanvas");
+  const ctx = canvas.getContext("2d");
+
+  // Fullscreen canvas
+  canvas.height = window.innerHeight;
+  canvas.width = window.innerWidth;
+
+  const letters = "アァイィウヴエェオカガキギクグケゲコゴサザシジスズセゼソゾタダチッヂツヅテデトドナニヌネノハバパヒビピフブプヘベペホボポマミムメモヤユヨラリルレロワヰヱヲンabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  const fontSize = 14;
+  const columns = canvas.width / fontSize;
+  const drops = Array.from({ length: columns }).map(() => 1);
+
+  function draw() {
+    ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = "#00ff00";
+    ctx.font = fontSize + "px monospace";
+
+    for (let i = 0; i < drops.length; i++) {
+      const text = letters[Math.floor(Math.random() * letters.length)];
+      ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+        drops[i] = 0;
+      }
+      drops[i]++;
+    }
+  }
+
+  setInterval(draw, 40);
+
+  // Handle window resize
+  window.addEventListener("resize", () => {
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+  });
+</script>
+
+</body>
+</html>
